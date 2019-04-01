@@ -1,18 +1,8 @@
 import data.IUserDAO;
 import data.UserDAOImpl;
 
-import java.sql.SQLException;
-
 public class Main {
-    static IUserDAO userDAO;
-
-    static {
-        try {
-            userDAO = new UserDAOImpl();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+    static IUserDAO userDAO = new UserDAOImpl();
 
     public static void main(String[] args) throws IUserDAO.DALException {
         long start = System.currentTimeMillis();
