@@ -1,4 +1,5 @@
 import data.IUserDAO;
+import data.IUserDTO;
 import data.UserDAOImpl;
 
 public class Main {
@@ -6,11 +7,12 @@ public class Main {
 
     public static void main(String[] args) throws IUserDAO.DALException {
         long start = System.currentTimeMillis();
-        userDAO.getUser(1);
-        userDAO.getUser(1);
-        userDAO.getUser(1);
+        IUserDTO user = userDAO.getUser(1);
+        for (int i = 0; i < 20; i++) {
+            System.out.println("Hentede bruger: " + user.getUserId());
+            userDAO.getUser(1);
+        }
         long end = System.currentTimeMillis();
-
         System.out.println("Time Elapsed: " + (double)(end-start)/1000 + "seconds");
 
 
