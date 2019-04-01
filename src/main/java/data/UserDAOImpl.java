@@ -5,9 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-//TODO Rename class
 public class UserDAOImpl implements IUserDAO {
-    //TODO Make a connection to the database
     private Connection createConnection() throws SQLException {
         return  DriverManager.getConnection("jdbc:mysql://ec2-52-30-211-3.eu-west-1.compute.amazonaws.com/db02327?"
                 + "user=db02327&password=db02327");
@@ -15,6 +13,8 @@ public class UserDAOImpl implements IUserDAO {
 
     @Override
     public IUserDTO getUser(int userId) throws DALException {
+
+        //TODO refactor so connection stays open!!
         try (Connection connection = createConnection()){
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM users WHERE userid = " + userId);
